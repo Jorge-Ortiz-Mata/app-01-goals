@@ -6,3 +6,5 @@ services:
       context: ./
       dockerfile: Dockerfile
       target: development
+    volumes:
+      - /app-01-goals/node_modules
