@@ -51,7 +51,10 @@ export default function App() {
       </View>
 
       <View style={styles.closeButton}>
-        <Button title='Close app' onPress={changeVisibility.bind(this, true)} />
+        <Button
+          title='Close app'
+          color={'#ff0000'}
+          onPress={changeVisibility.bind(this, true)} />
       </View>
 
       <StatusBar style="auto" />

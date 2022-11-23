@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { StyleSheet, View, Button, Modal, Text } from 'react-native';
+import { StyleSheet, View, Button, Modal, Text, Image } from 'react-native';
 
 const Welcome = (props) => {
 
   return(
     <Modal visible={props.visibility} animationType='fade'>
       <View style={styles.container}>
+        <Image source={require('../assets/logo.png')} style={styles.image} />
         <Text style={styles.text} >App Goals App</Text>
         <Button
           title='Add my goal'
@@ -28,6 +29,11 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontWeight: '700',
     fontSize: 30,
+    marginBottom: 20
+  },
+  image: {
+    width: 100,
+    height: 110,
     marginBottom: 20
   }
 })
