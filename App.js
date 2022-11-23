@@ -1,20 +1,16 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
-import GoalInput from './components/GoalItem';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
 
 export default function App() {
-  const [enteredGoal, setEnteredGoalText] = useState('');
+
   const [goalsList, addGoalToList] = useState([
-    {text: 'Hello', id: 2}, {text: 'World', id: 3}, {text: 'Jorge', id: 1},
-    {text: 'Hello 2', id: 4}, {text: 'World 2', id: 5}, {text: 'Jorge Ortiz', id: 6},
+    {text: 'Hello', id: 1}, {text: 'World', id: 2}, {text: 'Jorge', id: 3}
   ]);
 
-  function goalInputHandler(enteredText){
-    setEnteredGoalText(enteredText);
-  }
-
-  function goalButtonHandle(){
+  function goalButtonHandle(enteredGoal){
     addGoalToList((currentGoalsList) => [
       ...currentGoalsList,
       {text: enteredGoal, id: Math.random().toString()},
@@ -27,16 +23,7 @@ export default function App() {
         <Text style={styles.title}>Goals App</Text>
         <Text style={styles.text}>You can add your personal goals here!</Text>
       </View>
-      <View style={styles.addGoalContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="learn english..."
-          onChangeText={goalInputHandler} />
-        <Button
-          title="Add goal"
-          style={styles.button}
-          onPress={goalButtonHandle} />
-      </View>
+      <GoalInput onAddGoal={goalButtonHandle} />
       <View style={styles.listConatiner}>
         <Text style={styles.listTitle}>List of goals...</Text>
       </View>
@@ -46,7 +33,7 @@ export default function App() {
             return item.id
           }}
           renderItem={itemData => {
-          return <GoalInput item={itemData.item} />;
+          return <GoalItem item={itemData.item} />;
         }} alwaysBounceVertical={false} />
       </View>
       <StatusBar style="auto" />
