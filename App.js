@@ -61,20 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center'
   },
-  addGoalContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 20
-  },
-  input: {
-    backgroundColor: '#ffffff',
-    borderRadius: 10,
-    paddingVertical: 2,
-    paddingHorizontal: 10,
-    fontWeight: '600',
-    flex: 1
-  },
   listConatiner: {
     borderBottomColor: '#ffffff',
     borderBottomWidth: 2,
