@@ -17,6 +17,11 @@ export default function App() {
     ])
   }
 
+  function deleteGoal(id){
+    const results = goalsList.filter(goal => goal.id != id)
+    addGoalToList(results);
+  }
+
   return (
     <View style={styles.container}>
       <View>
@@ -33,7 +38,7 @@ export default function App() {
             return item.id
           }}
           renderItem={itemData => {
-          return <GoalItem item={itemData.item} />;
+          return <GoalItem item={itemData.item} deleteGoalT={deleteGoal} />;
         }} alwaysBounceVertical={false} />
       </View>
       <StatusBar style="auto" />
