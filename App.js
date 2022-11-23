@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
+import Welcome from './components/Welcome';
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
 
@@ -24,6 +25,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Welcome />
       <View>
         <Text style={styles.title}>Goals App</Text>
         <Text style={styles.text}>You can add your personal goals here!</Text>
