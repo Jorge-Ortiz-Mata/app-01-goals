@@ -1,21 +1,15 @@
 import { useState } from 'react';
 import { StyleSheet, View, Button, Modal, Text } from 'react-native';
 
-const Welcome = () => {
-
-  const [isVisible, setVisibility] = useState(true)
-
-  function changeVisibility(){
-    setVisibility(false);
-  }
+const Welcome = (props) => {
 
   return(
-    <Modal visible={isVisible} animationType='slide'>
+    <Modal visible={props.visibility} animationType='fade'>
       <View style={styles.container}>
-        <Text style={styles.text} >Hello World 2</Text>
+        <Text style={styles.text} >App Goals App</Text>
         <Button
-          onPress={changeVisibility}
-          title='Add my goal' />
+          title='Add my goal'
+          onPress={props.changeVisibility.bind(this, false)} />
       </View>
     </Modal>
   )
@@ -28,10 +22,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#282A3A',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 100,
     flex: 1
   },
   text: {
-    color: '#ffffff'
+    color: '#ffffff',
+    fontWeight: '700',
+    fontSize: 30,
+    marginBottom: 20
   }
 })

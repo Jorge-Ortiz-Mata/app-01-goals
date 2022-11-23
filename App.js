@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 import Welcome from './components/Welcome';
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
@@ -10,6 +10,12 @@ export default function App() {
   const [goalsList, addGoalToList] = useState([
     {text: 'Hello', id: 1}, {text: 'World', id: 2}, {text: 'Jorge', id: 3}
   ]);
+
+  const [isVisible, setVisibility] = useState(false)
+
+  function changeVisibility(value){
+    setVisibility(value);
+  }
 
   function goalButtonHandle(enteredGoal){
     addGoalToList((currentGoalsList) => [
@@ -25,7 +31,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Welcome />
+      <Welcome visibility={isVisible} changeVisibility={changeVisibility} />
       <View>
         <Text style={styles.title}>Goals App</Text>
         <Text style={styles.text}>You can add your personal goals here!</Text>
@@ -43,6 +49,9 @@ export default function App() {
           return <GoalItem item={itemData.item} deleteGoalT={deleteGoal} />;
         }} alwaysBounceVertical={false} />
       </View>
+
+      <Button title='Close app' onPress={changeVisibility.bind(this, true)} />
+
       <StatusBar style="auto" />
     </View>
   );
