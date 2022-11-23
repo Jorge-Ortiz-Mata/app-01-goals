@@ -50,7 +50,9 @@ export default function App() {
         }} alwaysBounceVertical={false} />
       </View>
 
-      <Button title='Close app' onPress={changeVisibility.bind(this, true)} />
+      <View style={styles.closeButton}>
+        <Button title='Close app' onPress={changeVisibility.bind(this, true)} />
+      </View>
 
       <StatusBar style="auto" />
     </View>
@@ -86,5 +88,8 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
     fontSize: 18
+  },
+  closeButton: {
+    paddingHorizontal: 100
   }
 });
