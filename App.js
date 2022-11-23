@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
+import GoalInput from './components/GoalItem';
 
 export default function App() {
   const [enteredGoal, setEnteredGoalText] = useState('');
@@ -45,11 +46,7 @@ export default function App() {
             return item.id
           }}
           renderItem={itemData => {
-          return(
-            <View style={styles.goalContainer}>
-              <Text style={styles.goalTitle}>{itemData.item.text}</Text>
-            </View>
-          );
+          return <GoalInput item={itemData.item} />;
         }} alwaysBounceVertical={false} />
       </View>
       <StatusBar style="auto" />
@@ -100,16 +97,5 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
     fontSize: 18
-  },
-  goalContainer: {
-    marginVertical: 10,
-    marginHorizontal: 5,
-    borderRadius: 10,
-    padding: 10,
-    backgroundColor: '#C7BCA1'
-  },
-  goalTitle: {
-    color: '#000',
-    fontWeight: '700',
   }
 });
