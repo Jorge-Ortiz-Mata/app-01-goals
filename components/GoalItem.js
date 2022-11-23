@@ -2,12 +2,8 @@ import { StyleSheet, Text, View, Pressable } from 'react-native';
 
 const GoalInput = (props) => {
 
-  function deleteGoal(){
-    props.deleteGoalT(props.item.id)
-  }
-
   return (
-    <Pressable onPress={deleteGoal}>
+    <Pressable onPress={props.deleteGoalT.bind(this, props.item.id)}>
       <View style={styles.goalContainer}>
         <Text style={styles.goalTitle}>{props.item.text}</Text>
       </View>

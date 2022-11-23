@@ -18,7 +18,7 @@ export default function App() {
   }
 
   function deleteGoal(id){
-    const results = goalsList.filter(goal => goal.id != id)
+    const results = goalsList.filter(goal => goal.id !== id);
     addGoalToList(results);
   }
 
