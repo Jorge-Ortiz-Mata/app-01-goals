@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
 
 export default function App() {
   const [enteredGoal, setEnteredGoalText] = useState('');
-  const [goalsList, addGoalToList] = useState(new Array);
+  const [goalsList, addGoalToList] = useState([
+    {text: 'Hello', id: 2}, {text: 'World', id: 3}, {text: 'Jorge', id: 1},
+    {text: 'Hello 2', id: 4}, {text: 'World 2', id: 5}, {text: 'Jorge Ortiz', id: 6},
+  ]);
 
   function goalInputHandler(enteredText){
     setEnteredGoalText(enteredText);
@@ -13,7 +16,7 @@ export default function App() {
   function goalButtonHandle(){
     addGoalToList((currentGoalsList) => [
       ...currentGoalsList,
-      enteredGoal,
+      {text: enteredGoal, id: Math.random().toString()},
     ])
   }
 
@@ -36,16 +39,18 @@ export default function App() {
       <View style={styles.listConatiner}>
         <Text style={styles.listTitle}>List of goals...</Text>
       </View>
-      <View>
-        <ScrollView>
-          {goalsList.map((goal, index) => {
-            return (
-              <View style={styles.goalContainer} key={index}>
-                <Text style={styles.goalTitle}>{goal}</Text>
-              </View>
-            )
-          })}
-        </ScrollView>
+      <View style={{height: 400}}>
+        <FlatList data={goalsList}
+          keyExtractor={(item, index) =>{
+            return item.id
+          }}
+          renderItem={itemData => {
+          return(
+            <View style={styles.goalContainer}>
+              <Text style={styles.goalTitle}>{itemData.item.text}</Text>
+            </View>
+          );
+        }} alwaysBounceVertical={false} />
       </View>
       <StatusBar style="auto" />
     </View>
@@ -57,17 +62,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#282A3A',
     padding: 20,
+    paddingTop: 50,
     color: '#ffffff'
   },
   title: {
     color: '#ffffff',
-    fontWeight: 700,
+    fontWeight: '700',
     fontSize: 30,
     textAlign: 'center'
   },
   text: {
     color: '#ffffff',
-    fontWeight: 400,
+    fontWeight: '400',
     fontSize: 16,
     textAlign: 'center'
   },
@@ -80,8 +86,9 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#ffffff',
     borderRadius: 10,
-    padding: 10,
-    fontWeight: 600,
+    paddingVertical: 2,
+    paddingHorizontal: 10,
+    fontWeight: '600',
     flex: 1
   },
   listConatiner: {
@@ -90,7 +97,7 @@ const styles = StyleSheet.create({
   },
   listTitle: {
     color: '#ffffff',
-    fontWeight: 700,
+    fontWeight: '700',
     textAlign: 'center',
     fontSize: 18
   },
@@ -99,10 +106,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     borderRadius: 10,
     padding: 10,
-    backgroundColor: '#000fff'
+    backgroundColor: '#C7BCA1'
   },
   goalTitle: {
-    color: '#ffffff',
-    fontWeight: 500,
+    color: '#000',
+    fontWeight: '700',
   }
 });
